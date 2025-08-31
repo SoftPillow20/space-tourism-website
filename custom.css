@@ -146,6 +146,10 @@ select {
   margin-top: var(--flow-space, 1rem);
 }
 
+.flow--space-small {
+  --flow-space: 0.75rem;
+}
+
 .container {
   padding-inline: 2em;
   margin-inline: auto;
@@ -331,11 +335,11 @@ select {
 .primary-navigation {
   --gap: clamp(1.5rem, 5vw, 3.5rem);
   --underline-gap: 2rem;
-  background: hsl(var(--clr-white) / 0.02);
-  backdrop-filter: blur(1.5rem);
   list-style: none;
   padding: 0;
   margin: 0;
+  backdrop-filter: blur(1.5rem);
+  background: hsl(var(--clr-white) / 0.02);
 }
 
 .primary-navigation a {
@@ -402,7 +406,7 @@ select {
 
 @media (min-width: 35em) {
   .primary-navigation {
-    padding-inline: clamp(3rem, 5vw, 7rem);
+    padding-inline: clamp(3rem, 7vw, 7rem);
   }
 }
 
@@ -429,10 +433,6 @@ select {
     order: 2;
   }
 
-  .primary-header > div {
-    justify-self: start;
-  }
-
   .primary-navigation {
     margin-block: 2rem;
   }
@@ -440,9 +440,10 @@ select {
 
 .underline-indicators > * {
   cursor: pointer;
-  padding: var(--underline-gap, 1rem) 0;
+  padding: var(--underline-gap, 0.75rem) 0;
   border: 0;
   border-bottom: 0.2rem solid hsl(var(--clr-white) / 0);
+  background-color: transparent;
 }
 
 .underline-indicators > *:hover,
@@ -518,16 +519,44 @@ body {
   background-image: url(./assets/home/background-home-mobile.jpg);
 }
 
+.destination {
+  background-image: url(./assets/destination/background-destination-mobile.jpg);
+}
+
+.crew {
+  background-image: url(./assets/crew/background-crew-mobile.jpg);
+}
+
 @media (min-width: 35em) {
   .home {
     background-position: center center;
     background-image: url(./assets/home/background-home-tablet.jpg);
+  }
+
+  .destination {
+    background-position: center center;
+    background-image: url(./assets/destination/background-destination-tablet.jpg);
+  }
+
+  .crew {
+    background-position: center center;
+    background-image: url(./assets/crew/background-crew-tablet.jpg);
   }
 }
 
 @media (min-width: 45em) {
   .home {
     background-image: url(./assets/home/background-home-desktop.jpg);
+  }
+
+  .destination {
+    background-position: center center;
+    background-image: url(./assets/destination/background-destination-desktop.jpg);
+  }
+
+  .crew {
+    background-position: center center;
+    background-image: url(./assets/crew/background-crew-desktop.jpg);
   }
 }
 
@@ -540,14 +569,15 @@ body {
   text-align: center;
   place-items: center;
   padding-inline: 1rem;
-  padding-bottom: 3rem;
+  padding-bottom: 4rem;
 }
 
-.grid-container * {
-  max-width: 45ch;
+/* Select the paragraph that does not have a class attribute */
+.grid-container p:not([class]) {
+  max-width: 50ch;
 }
 
-.number-title {
+.numbered-title {
   grid-area: title;
 }
 
@@ -562,7 +592,7 @@ body {
     "content";
 }
 
-.grid-container--destination img {
+.grid-container--destination > picture {
   grid-area: image;
   max-width: 60%;
 }
@@ -582,6 +612,10 @@ body {
   margin-top: 2.5rem;
 }
 
+.destination-meta p {
+  font-size: 1.75rem;
+}
+
 @media (min-width: 35em) {
   .numbered-title {
     justify-self: start;
@@ -598,16 +632,17 @@ body {
   .grid-container {
     text-align: left;
     column-gap: var(--container-gap, 2rem);
-    grid-template-columns: minmax(2rem, 1fr) repeat(2, minmax(0, 40rem)) minmax(
-        2rem,
+    grid-template-columns: minmax(1rem, 1fr) repeat(2, minmax(0, 30rem)) minmax(
+        1rem,
         1fr
       );
   }
-  .grid-container > *:first-child {
+
+  .grid-container--home > *:first-child {
     grid-column: 2;
   }
 
-  .grid-container > *:last-child {
+  .grid-container--home > *:last-child {
     grid-column: 3;
   }
 
@@ -615,5 +650,110 @@ body {
     /* max checks what's the available maximum value from the user's screen size */
     padding-bottom: max(6rem, 20vh);
     align-items: end;
+  }
+
+  .grid-container--destination {
+    justify-items: start;
+    align-items: start;
+    grid-template-areas:
+      ". title title ."
+      ". image tabs ."
+      ". image content .";
+  }
+
+  .grid-container--destination > picture {
+    max-width: 90%;
+  }
+
+  .destination-meta {
+    --gap: min(5vw, 6rem);
+    justify-content: start;
+  }
+}
+
+/* Crew layout */
+
+.grid-container--crew {
+  --flow-space: 2rem;
+  grid-template-areas:
+    "title"
+    "image"
+    "tabs"
+    "content";
+}
+.grid-container--crew > picture {
+  grid-area: image;
+  max-width: 60%;
+  border-bottom: 1px solid hsl(var(--clr-white) / 0.1);
+}
+
+.grid-container--crew > .dot-indicators {
+  grid-area: tabs;
+}
+
+.grid-container--crew > .crew-details {
+  grid-area: content;
+}
+
+.crew-details h2 {
+  color: hsl(var(--clr-white) / 0.5);
+}
+
+@media (min-width: 35em) {
+  .numbered-title {
+    justify-self: start;
+    margin-top: 2rem;
+  }
+
+  .grid-container--crew {
+    padding-bottom: 0;
+    --flow-space: 2rem;
+    grid-template-areas:
+      "title"
+      "content"
+      "tabs"
+      "image";
+  }
+}
+
+@media (min-width: 45em) {
+  .grid-container {
+    text-align: left;
+    column-gap: var(--container-gap, 2rem);
+    grid-template-columns: minmax(1rem, 1fr) repeat(2, minmax(0, 30rem)) minmax(
+        1rem,
+        1fr
+      );
+  }
+
+  .grid-container--home > *:first-child {
+    grid-column: 2;
+  }
+
+  .grid-container--home > *:last-child {
+    grid-column: 3;
+  }
+
+  .grid-container--home {
+    /* max checks what's the available maximum value from the user's screen size */
+    padding-bottom: max(6rem, 20vh);
+    align-items: end;
+  }
+
+  .grid-container--crew {
+    justify-items: start;
+    align-items: start;
+    grid-template-areas:
+      ". title title ."
+      ". content image ."
+      ". tabs image .";
+  }
+
+  .grid-container--crew > picture {
+    max-width: 90%;
+  }
+
+  .grid-container--crew > picture {
+    align-self: end;
   }
 }
