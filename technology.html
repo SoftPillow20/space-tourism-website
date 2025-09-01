@@ -25,8 +25,9 @@
     <title>Frontend Mentor | Space tourism website</title>
 
     <script defer src="navigation.js"></script>
+    <script defer src="tabs.js"></script>
   </head>
-  <body class="home">
+  <body class="technology">
     <a class="skip-to-content" href="#main">Skip to main content</a>
     <header class="primary-header flex">
       <!-- My ::before is here -->
@@ -46,7 +47,7 @@
           data-visible="false"
           class="primary-navigation underline-indicators flex"
         >
-          <li class="active">
+          <li>
             <a
               class="ff-sans-normal uppercase text-white letter-spacing-2"
               href="index.html"
@@ -67,7 +68,7 @@
               ><span aria-hidden="true">02</span>Crew</a
             >
           </li>
-          <li>
+          <li class="active">
             <a
               class="ff-sans-normal uppercase text-white letter-spacing-2"
               href="technology.html"
@@ -78,26 +79,42 @@
       </nav>
     </header>
 
-    <main id="main" class="grid-container grid-container--home">
-      <div>
-        <h1 class="text-accent fs-500 ff-sans-cond uppercase letter-spacing-1">
-          So, you want to travel to
-          <span class="fs-900 ff-serif text-white d-block">Space</span>
-        </h1>
+    <main id="main" class="grid-container grid-container--technology flow">
+      <h1 class="numbered-title">
+        <span aria-hidden="true">03</span> Space launch 101
+      </h1>
+      <!-- Numbers -->
+      <div class="number-indicators grid">
+        <button class="ff-sans-normal fs-400" aria-selected="true">1</button>
+        <button class="ff-sans-normal fs-400" aria-selected="false">2</button>
+        <button class="ff-sans-normal fs-400" aria-selected="false">3</button>
+      </div>
+
+      <article class="technology-details flow">
+        <header class="flow flow--space-small">
+          <h2 class="fs-600 ff-serif uppercase">The Terminology...</h2>
+          <p class="fs-700 uppercase ff-serif">launch vehicle</p>
+        </header>
         <p>
-          Let’s face it; if you want to go to space, you might as well genuinely
-          go to outer space and not hover kind of on the edge of it. Well sit
-          back, and relax because we’ll give you a truly out of this world
-          experience!
+          A launch vehicle or carrier rocket is a rocket-propelled vehicle used
+          to carry a payload from Earth's surface to space, usually to Earth
+          orbit or beyond. Our WEB-X carrier rocket is the most powerful in
+          operation. Standing 150 metres tall, it's quite an awe-inspiring sight
+          on the launch pad!
         </p>
-      </div>
-      <div>
-        <a
-          href="destination.html"
-          class="large-button uppercase ff-serif text-dark bg-white"
-          >Explore</a
-        >
-      </div>
+      </article>
+
+      <picture>
+        <source
+          srcset="./assets/technology/image-launch-vehicle-landscape.jpg"
+          media="(max-width: 45em)"
+          type="image/webp"
+        />
+        <img
+          src="./assets/technology/image-launch-vehicle-portrait.jpg"
+          alt="Photo of a rocket launching"
+        />
+      </picture>
     </main>
   </body>
 </html>

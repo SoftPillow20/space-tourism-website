@@ -3,11 +3,8 @@ const navToggle = document.querySelector(".mobile-nav-toggle");
 
 // When someone clicks the hamburger button
 navToggle.addEventListener("click", () => {
-  const visibilty = nav.getAttribute("data-visible");
-
-  console.log(navToggle.getAttribute("aria-expanded"));
-
-  if (visibilty === "false") {
+  const visibility = nav.getAttribute("data-visible");
+  if (visibility === "false") {
     nav.setAttribute("data-visible", true);
     navToggle.setAttribute("aria-expanded", true);
   } else {
